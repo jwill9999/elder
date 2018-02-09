@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import "./App.css";
+import "./api.css";
 
-class App extends Component {
+class Api extends Component {
   state = {
     response: ""
   };
@@ -30,4 +30,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Api;
