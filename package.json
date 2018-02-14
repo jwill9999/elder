@@ -5,7 +5,7 @@
   "scripts": {
     "start": "nodemon ./bin/www",
     "client": "cd client && yarn start",
-    "dev": "concurrently --kill-others-on-fail \"yarn start\" \"yarn client\""
+    "dev": "concurrently --kill-others-on-fail \"npm run start\" \"yarn client\""
   },
   "description": "Elder Project",
   "dependencies": {
@@ -25,5 +25,11 @@
     "email": "jasonwilliams@letuscode.co.uk",
     "url": "http://letuscode.co.uk"
   },
-  "keywords": ["node", "express", "react", "redux", "create-react-app"]
+  "keywords": [
+    "node",
+    "express",
+    "react",
+    "redux",
+    "create-react-app"
+  ]
 }

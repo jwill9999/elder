@@ -1,19 +1,44 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Route, BrowserRouter } from "react-router-dom";
-import API from "./components/Api/api";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware, compose } from "redux";
 
-import "./index.css";
+// Middleware
+import thunk from "redux-thunk";
+
+// Reducers
+import reducers from "./reducers";
+
+// Component imports
 import App from "./components/App/App";
+import Api from "./components/Api/api";
+
+// Service Worker React
 import registerServiceWorker from "./registerServiceWorker";
 
+// CSS imports
+import "./index.css";
+
+// redux dev tools setup
+const enhancers = compose(
+  window.devToolsExtension ? window.devToolsExtension() : f => f
+);
+
+// Create store
+
+const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+const store = createStoreWithMiddleware(reducers, enhancers);
+
 ReactDOM.render(
-  <BrowserRouter>
-    <div>
-      <Route path="/" component={App} />
-      <Route path="/api" component={API} />
-    </div>
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <div>
+        <Route path="/" component={App} />
+        <Route path="/test" component={Api} />
+      </div>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById("root")
 );
 registerServiceWorker();
