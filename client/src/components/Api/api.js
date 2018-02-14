@@ -33,42 +33,46 @@ class Api extends Component {
 
     if (data.length !== 0) {
       return (
-        <div className="container">
-          <div className="text-center mt-5 mb-5">
-            <h1>Welcome to Elder Questions and Answers</h1>
-          </div>
-          <div>
-            <form
-              id="questionForm"
-              onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
-            >
-              {this.props.data.map(info => (
-                <div className="card m-5" key={info.title}>
-                  <div className="card-body">
-                    <label>{info.title}</label>
-                    <div>
-                      {info.choices.map(d => (
-                        <label htmlFor={info.title} className="mr-5" key={d}>
-                          <Field
-                            name={info.title}
-                            component="input"
-                            type="radio"
-                            value={d}
-                          />
-                          {d}
-                        </label>
-                      ))}
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-md-10 text-center mx-auto mt-5 mb-5">
+              <h1>Welcome to Elder Questions and Answers</h1>
+
+              <form
+                id="questionForm"
+                onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
+              >
+                {this.props.data.map(info => (
+                  <div className="card m-5" key={info.title}>
+                    <div className="card-body">
+                      <label>{info.title}</label>
+                      <div>
+                        {info.choices.map(d => (
+                          <label
+                            htmlFor={info.title}
+                            className=" col-md-12 text-left mr-5"
+                            key={d}
+                          >
+                            <Field
+                              className="m-2"
+                              name={info.title}
+                              component="input"
+                              type="radio"
+                              value={d}
+                            />
+                            {d}
+                          </label>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-              <button
-                action="submit"
-                className="btn btn-success btn-lg btn-block m-5"
-              >
-                Submit Your Answers
-              </button>
-            </form>
+                ))}
+
+                <button action="submit" className="btn btn-success btn-lg  ">
+                  Submit Your Answers
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       );

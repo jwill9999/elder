@@ -35,7 +35,7 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
         <Route path="/" component={App} />
-        <Route path="/test" component={Api} />
+        <Route path="/questions" component={Api} />
       </div>
     </BrowserRouter>
   </Provider>,

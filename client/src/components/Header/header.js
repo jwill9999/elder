@@ -23,8 +23,8 @@ const Header = () => (
           <Link className="nav-item nav-link " to="/">
             Home <span className="sr-only">(current)</span>
           </Link>
-          <Link className="nav-item nav-link" to="/api">
-            Api
+          <Link className="nav-item nav-link" to="/questions">
+            Questions
           </Link>
         </div>
       </div>
