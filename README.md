@@ -1,8 +1,8 @@
-# The Elder Project
+# The React Redux Elder Project
 
 ## Project View
 
-![](./public/images.elder.png)
+![](./public/images/elder.png)
 
 ```
 git clone
