@@ -3,9 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www",
-    "client": "cd client && yarn start",
-    "dev": "concurrently --kill-others-on-fail \"npm run start\" \"yarn client\""
+    "start": "node ./bin/www"
   },
   "description": "Elder Project",
   "dependencies": {
@@ -25,11 +23,8 @@
     "email": "jasonwilliams@letuscode.co.uk",
     "url": "http://letuscode.co.uk"
   },
-  "keywords": [
-    "node",
-    "express",
-    "react",
-    "redux",
-    "create-react-app"
-  ]
+  "engines": {
+    "node": "8.1.4"
+  },
+  "keywords": ["node", "express", "react", "redux", "create-react-app"]
 }
