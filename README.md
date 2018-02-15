@@ -1,19 +1,17 @@
 # The React Redux Elder Project
 
+## This demonstration is a build copy and therefore can be run from the node server alone as a production react build has taken place. All client files are served from the react build folder and supplied to the node server.
+
 ## Project View
 
 ![](./public/images/elder.png)
 
 ```
-git clone
+git clone https://github.com/jwill9999/elder.git
 
 cd into elder >>> npm install
 
-cd into client >>> npm install
+npm run start
 
-cd back into elder >>> npm run dev
-
-Server >>> runs on port 5000
-
-Client >>> will auto open in browser and runs on port 3000
+open browser http:localhost:5000
 ```
