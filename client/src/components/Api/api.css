@@ -3,3 +3,18 @@
   text-align: center;
   margin-top: 10vh;
 }
+
+.card {
+  border-radius: 10px;
+}
+
+.card-body {
+  box-shadow: 3px 2px 25px #000000ab;
+  border-radius: 10px;
+}
+
+#headerText {
+  padding: inherit;
+  margin-left: 5px;
+  margin-right: 5px;
+}

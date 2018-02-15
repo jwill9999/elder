@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Route, BrowserRouter } from "react-router-dom";
+import { Route, BrowserRouter, Redirect } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 
@@ -34,7 +34,11 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <div>
-        <Route path="/" component={App} />
+        <Route
+          exact
+          path="/"
+          render={() => <Redirect to="/questions" component={App} />}
+        />
         <Route path="/questions" component={Api} />
       </div>
     </BrowserRouter>

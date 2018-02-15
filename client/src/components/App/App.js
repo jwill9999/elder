@@ -4,7 +4,7 @@ import Header from "../Header/header";
 import "./App.css";
 
 const App = props => (
-  <div className="container-fluid">
+  <div>
     <Header />
     {props.children}
   </div>
