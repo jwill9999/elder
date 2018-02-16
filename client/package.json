@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",
-    "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
     "format": "prettier-eslint \"src/**/*.js\"",
+    "history": "^4.7.2",
     "lint": "eslint src",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",

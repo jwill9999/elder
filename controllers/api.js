@@ -56,6 +56,7 @@ router.post("/results", (req, res) => {
         ==============================================
     */
     if (result) {
+      console.log("RESULTS ++ ", result);
       res.send({
         data: {
           incorrectIndex: result,

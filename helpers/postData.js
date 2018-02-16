@@ -21,7 +21,9 @@ module.exports = {
       ==================================================
   */
 
-  diffArray: function diffArray(arr1, arr2) {
+  diffArray: function(arr1, arr2) {
+    console.log("arr1 ===", arr1);
+    console.log("arr2 ===", arr2);
     var newArr = [];
 
     function check(first, second) {
@@ -32,6 +34,7 @@ module.exports = {
       }
     }
     check(arr2, arr1);
+
     return newArr;
   }
 };

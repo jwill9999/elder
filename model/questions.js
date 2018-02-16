@@ -17,7 +17,7 @@ module.exports = [
   {
     title: "What is the sum total of 100 x 4",
     choices: ["4000", "40.0", "400"],
-    answer: " 400"
+    answer: "400"
   },
   {
     title: "What is the sum total of 1001 - 1000",
