@@ -1,5 +1,5 @@
 {
-  "extends": ["airbnb", "prettier", "prettier/react"],
+  "extends": ["airbnb", "prettier/react", "prettier"],
   "plugins": ["prettier"],
   "parser": "babel-eslint",
   "parserOptions": {
@@ -19,7 +19,13 @@
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [".js", ".jsx"]
+        "extensions": [".js", ".jsx"],
+        "no-restricted-syntax": [
+          "error",
+          "ForInStatement",
+          "LabeledStatement",
+          "WithStatement"
+        ]
       }
     ],
     "linebreak-style": 0,

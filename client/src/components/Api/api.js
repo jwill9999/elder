@@ -7,12 +7,15 @@ import { Field, reduxForm } from "redux-form";
 
 import fetchData from "../../actions/index";
 import sendData from "../../actions/sendData";
+import Header from "../Header/header";
 
 import "./api.css";
 
 class Api extends Component {
   componentDidMount() {
-    this.props.fetchData();
+    if (!this.props.data.length > 0) {
+      this.props.fetchData();
+    }
   }
 
   handleFormSubmit(e) {
@@ -76,52 +79,55 @@ class Api extends Component {
 
     if (data.length !== 0) {
       return (
-        <div className="container">
-          <div className="row">
-            <div className="col-md-10 text-center mx-auto mt-5 mb-5">
-              {this.alertMessage()}
-              {this.alertResults()}
-              <h1 id="headerText">Elder Questions and Answers</h1>
-              <form
-                id="questionForm"
-                onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
-              >
-                {this.props.data.map((info, index) => (
-                  <div className="card m-5" key={info.title}>
-                    <div className="card-body">
-                      <label>{info.title}</label>
-                      <div>
-                        {info.choices.map(d => (
-                          <label
-                            htmlFor={info.title}
-                            className=" col-md-12 text-left mr-5"
-                            key={d}
-                          >
-                            <Field
-                              className="m-2"
-                              name={info.title}
-                              component="input"
-                              type="radio"
-                              value={d}
-                            />
-                            {d}
-                          </label>
-                        ))}
-                        {this.alertResults2(index)}
-                      </div>
-                    </div>
-                  </div>
-                ))}
+        <div>
+          <Header />
+          <div className="container">
+            <div className="row">
+              <div className="col-md-10 text-center mx-auto mt-5 mb-5">
                 {this.alertMessage()}
                 {this.alertResults()}
-
-                <button
-                  action="submit"
-                  className="btn btn-success btn-lg btn-block  "
+                <h1 id="headerText">Elder Questions and Answers</h1>
+                <form
+                  id="questionForm"
+                  onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
                 >
-                  Submit Your Answers
-                </button>
-              </form>
+                  {this.props.data.map((info, index) => (
+                    <div className="card m-5" key={info.title}>
+                      <div className="card-body">
+                        <label>{info.title}</label>
+                        <div>
+                          {info.choices.map(d => (
+                            <label
+                              htmlFor={info.title}
+                              className=" col-md-12 text-left mr-5"
+                              key={d}
+                            >
+                              <Field
+                                className="m-2"
+                                name={info.title}
+                                component="input"
+                                type="radio"
+                                value={d}
+                              />
+                              {d}
+                            </label>
+                          ))}
+                          {this.alertResults2(index)}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                  {this.alertMessage()}
+                  {this.alertResults()}
+
+                  <button
+                    action="submit"
+                    className="btn btn-success btn-lg btn-block  "
+                  >
+                    Submit Your Answers
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>

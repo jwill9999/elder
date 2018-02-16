@@ -8,7 +8,6 @@ export default function sendData(data) {
       .post("/api/results", { data })
       .then(res => {
         const payload = res.data.data;
-        console.log("returned data ", payload);
         setTimeout(() => {
           dispatch({
             type: SEND_DATA,
