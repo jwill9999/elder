@@ -4,7 +4,11 @@
 
 ## Project View
 
+![](./public/images/elderhome.png)
+
 ![](./public/images/elder.png)
+
+![](./public/images/eldererror.png)
 
 ```
 git clone https://github.com/jwill9999/elder.git
