@@ -13,7 +13,7 @@ import "./api.css";
 
 class Api extends Component {
   componentDidMount() {
-    if (!this.props.data.length > 0) {
+    if (this.props.data.length <= 0) {
       this.props.fetchData();
     }
   }
