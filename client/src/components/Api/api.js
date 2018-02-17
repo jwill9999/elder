@@ -17,15 +17,9 @@ class Api extends Component {
       this.props.fetchData();
     }
   }
-
-  handleFormSubmit(e) {
-    this.props.sendData(e);
-  }
-
   // error message alert from server
   alertMessage() {
-    const { error } = this.props.message;
-    if (error) {
+    if (this.props.message.error) {
       return (
         <div className="alert alert-danger" role="alert">
           <strong>{this.props.message.error}</strong>
@@ -50,19 +44,20 @@ class Api extends Component {
 
   alertResults2(index) {
     if (Object.keys(this.props.results).length > 0) {
-      const arr = this.props.results.incorrectIndex;
-      console.log("arr === ", arr);
-
-      for (const i in arr) {
-        if (index === arr[i]) {
+      return this.props.results.incorrectIndex.map(i => {
+        if (index === i) {
           return (
             <div className="alert alert-danger" role="alert">
               <strong>Incorrect Answer Try Again</strong>
             </div>
           );
         }
-      }
+      });
     }
+  }
+
+  handleFormSubmit(e) {
+    this.props.sendData(e);
   }
 
   render() {
@@ -78,6 +73,8 @@ class Api extends Component {
     }
 
     if (data.length !== 0) {
+      const { error } = this.props.message;
+
       return (
         <div>
           <Header />
