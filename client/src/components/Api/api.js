@@ -8,6 +8,8 @@ import { Field, reduxForm } from "redux-form";
 import fetchData from "../../actions/index";
 import sendData from "../../actions/sendData";
 import Header from "../Header/header";
+import FormFields from "../FormFields/FormFields";
+import Results from "../Results/Results";
 
 import "./api.css";
 
@@ -28,41 +30,12 @@ class Api extends Component {
     }
   }
 
-  alertResults() {
-    const { totalQuestions, totalIncorrect } = this.props.results;
-    if (Object.keys(this.props.results).length > 0) {
-      return (
-        <div className="alert alert-info" role="alert">
-          <strong>
-            You got {totalQuestions - totalIncorrect} questions right out of a
-            total of {this.props.results.totalQuestions}
-          </strong>
-        </div>
-      );
-    }
-  }
-
-  alertResults2(index) {
-    if (Object.keys(this.props.results).length > 0) {
-      return this.props.results.incorrectIndex.map(i => {
-        if (index === i) {
-          return (
-            <div className="alert alert-danger" role="alert">
-              <strong>Incorrect Answer Try Again</strong>
-            </div>
-          );
-        }
-      });
-    }
-  }
-
   handleFormSubmit(e) {
     this.props.sendData(e);
   }
 
   render() {
-    const { handleSubmit, data } = this.props;
-    if (data.length === 0) {
+    if (this.props.data.length === 0) {
       return (
         <div className="container ">
           <div className="mx-auto spinner">
@@ -72,9 +45,7 @@ class Api extends Component {
       );
     }
 
-    if (data.length !== 0) {
-      const { error } = this.props.message;
-
+    if (this.props.data.length !== 0) {
       return (
         <div>
           <Header />
@@ -82,41 +53,20 @@ class Api extends Component {
             <div className="row">
               <div className="col-md-10 text-center mx-auto mt-5 mb-5">
                 {this.alertMessage()}
-                {this.alertResults()}
+
                 <h1 id="headerText">Elder Questions and Answers</h1>
                 <form
                   id="questionForm"
-                  onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
+                  onSubmit={this.props.handleSubmit(
+                    this.handleFormSubmit.bind(this)
+                  )}
                 >
-                  {this.props.data.map((info, index) => (
-                    <div className="card m-5" key={info.title}>
-                      <div className="card-body">
-                        <label>{info.title}</label>
-                        <div>
-                          {info.choices.map(d => (
-                            <label
-                              htmlFor={info.title}
-                              className=" col-md-12 text-left mr-5"
-                              key={d}
-                            >
-                              <Field
-                                className="m-2"
-                                name={info.title}
-                                component="input"
-                                type="radio"
-                                value={d}
-                              />
-                              {d}
-                            </label>
-                          ))}
-                          {this.alertResults2(index)}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+                  <FormFields
+                    data={this.props.data}
+                    results={this.props.results}
+                  />
                   {this.alertMessage()}
-                  {this.alertResults()}
-
+                  <Results results={this.props.results} />
                   <button
                     action="submit"
                     className="btn btn-success btn-lg btn-block  "
