@@ -21,12 +21,10 @@ module.exports = {
       ==================================================
   */
 
-  diffArray: function(arr1, arr2) {
-    console.log("arr1 ===", arr1);
-    console.log("arr2 ===", arr2);
+  diffArray: function(arr1, arr2, done) {
     var newArr = [];
 
-    function check(first, second) {
+    function check(first, second, done) {
       for (var i = 0; i < first.length; i++) {
         if (second.indexOf(first[i]) === -1) {
           newArr.push(i);
@@ -35,6 +33,6 @@ module.exports = {
     }
     check(arr2, arr1);
 
-    return newArr;
+    return done(null, newArr);
   }
 };

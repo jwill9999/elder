@@ -1,14 +1,16 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 export default class Results extends Component {
   alertResults() {
-    const { totalQuestions, totalIncorrect } = this.props.results;
-    if (Object.keys(this.props.results).length > 0) {
+    const { totalQuestions, totalIncorrect } = this.props;
+
+    if (totalIncorrect !== undefined) {
       return (
         <div className="alert alert-info" role="alert">
           <strong>
             You got {totalQuestions - totalIncorrect} questions right out of a
-            total of {this.props.results.totalQuestions}
+            total of {totalQuestions}
           </strong>
         </div>
       );
@@ -19,3 +21,13 @@ export default class Results extends Component {
     return <div>{this.alertResults()}</div>;
   }
 }
+
+Results.defaultProps = {
+  totalIncorrect: undefined,
+  totalQuestions: undefined
+};
+
+Results.propTypes = {
+  totalIncorrect: PropTypes.number,
+  totalQuestions: PropTypes.number
+};

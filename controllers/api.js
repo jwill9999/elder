@@ -35,6 +35,15 @@ router.post("/results", (req, res) => {
       ================================================================  
    */
   let parseAnswers = data => {
+    /*  ==============================================================
+      Map over Model data and extract the answers so we can compare
+      against candidates response
+      ================================================================
+   */
+    const arr1 = model.map(answers => {
+      return answers.answer;
+    });
+
     /*  ==========================
         extract Object values only
         from answers
@@ -48,35 +57,20 @@ router.post("/results", (req, res) => {
         returns incorrect index
         =====================================================
     */
-    let result = diffArray(arr1, arr2);
-
-    /*  =============================================
-        once arrays are diff for incorrect answers
-        an object is returned with incorrect answers
-        ==============================================
-    */
-    if (result) {
-      console.log("RESULTS ++ ", result);
-      res.send({
-        data: {
-          incorrectIndex: result,
-          totalQuestions: arr2.length,
-          totalIncorrect: result.length
-        }
-      });
-    } else {
-      res.status(500).send({ error: "Something failed!" });
-    }
+    diffArray(arr1, arr2, function(err, results) {
+      if (err) {
+        res.status(500).send({ error: "Something failed!" });
+      } else {
+        res.send({
+          data: {
+            incorrectIndex: results,
+            totalQuestions: arr2.length,
+            totalIncorrect: results.length
+          }
+        });
+      }
+    });
   };
-
-  /*  ==============================================================
-      Map over Model data and extract the answers so we can compare
-      against candidates response
-      ================================================================
-   */
-  const arr1 = model.map(answers => {
-    return answers.answer;
-  });
 });
 
 module.exports = router;

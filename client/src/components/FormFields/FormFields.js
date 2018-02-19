@@ -1,13 +1,20 @@
 import React, { Component } from "react";
 import { Field } from "redux-form";
+import PropTypes from "prop-types";
 
-export default class extends Component {
+export default class FormFields extends Component {
   alertResults2(index) {
-    if (Object.keys(this.props.results).length > 0) {
-      return this.props.results.incorrectIndex.map(i => {
+    const { incorrectIndex } = this.props;
+
+    if (incorrectIndex !== undefined) {
+      return incorrectIndex.map(i => {
         if (index === i) {
           return (
-            <div className="alert alert-danger" role="alert">
+            <div
+              key={incorrectIndex}
+              className="alert alert-danger"
+              role="alert"
+            >
               <strong>Incorrect Answer Try Again</strong>
             </div>
           );
@@ -16,7 +23,8 @@ export default class extends Component {
     }
   }
   render() {
-    return this.props.data.map((info, index) => (
+    const { data } = this.props;
+    return data.map((info, index) => (
       <div className="card m-5" key={info.title}>
         <div className="card-body">
           <h3>{info.title}</h3>
@@ -44,3 +52,16 @@ export default class extends Component {
     ));
   }
 }
+
+FormFields.defaultProps = {
+  incorrectIndex: undefined
+};
+FormFields.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      choices: PropTypes.array.isRequired
+    })
+  ).isRequired,
+  incorrectIndex: PropTypes.arrayOf(PropTypes.number)
+};
