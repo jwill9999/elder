@@ -17,7 +17,7 @@ const SplashImage = () => (
         Go to Elder Questions and Answers
       </Link>
       <Link
-        to="/questionss"
+        to="/error"
         type="button"
         className="btn btn-danger btn-lg btn-block "
       >

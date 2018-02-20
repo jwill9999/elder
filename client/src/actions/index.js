@@ -1,4 +1,5 @@
 import axios from "axios";
+import { push } from "react-router-redux";
 import error from "./errors";
 import { FETCH_DATA } from "./types";
 
@@ -31,6 +32,7 @@ export default function fetchData() {
       .catch(() => {
         setTimeout(() => {
           dispatch(error("Something Failed getting your Questions !"));
+          dispatch(push("/error"));
         }, 3000);
       });
   };

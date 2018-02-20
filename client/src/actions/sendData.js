@@ -1,4 +1,6 @@
 import axios from "axios";
+import { push } from "react-router-redux";
+
 import error from "./errors";
 import { SEND_DATA } from "./types";
 
@@ -17,7 +19,7 @@ import { SEND_DATA } from "./types";
 export default function sendData(data) {
   return dispatch => {
     axios
-      .post("/api/results", { data })
+      .post("/api/resultss", { data })
       .then(res => {
         const payload = res.data.data;
         setTimeout(() => {
@@ -29,7 +31,8 @@ export default function sendData(data) {
       })
       .catch(() => {
         setTimeout(() => {
-          dispatch(error("Something failed getting your results!"));
+          dispatch(error("Something Failed getting your Results !"));
+          dispatch(push("/error"));
         }, 3000);
       });
   };

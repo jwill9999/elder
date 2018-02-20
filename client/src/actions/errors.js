@@ -1,3 +1,4 @@
+import { push } from "react-router-redux";
 import { ERROR_INFO, CLEAR_ERROR } from "./types";
 
 /*  =================================================================
@@ -21,6 +22,7 @@ export default function authError(error) {
         type: CLEAR_ERROR,
         payload: []
       });
+      dispatch(push("/"));
     }, 6000);
   };
 }
