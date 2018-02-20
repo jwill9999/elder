@@ -2,6 +2,18 @@ import axios from "axios";
 import error from "./errors";
 import { SEND_DATA } from "./types";
 
+/*  =================================================================
+              ***** SETTIMEROUT FOR LOADER DISPLAY ONLY ******
+              Sends the results to Server for verification.
+              Returns the results :-
+              data: {
+                        incorrectIndex: [],
+                        totalQuestions: number,
+                        totalIncorrect: number
+                      }
+    ===================================================================
+*/
+
 export default function sendData(data) {
   return dispatch => {
     axios

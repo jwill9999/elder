@@ -4,30 +4,51 @@ import { Switch, Route, BrowserRouter, Redirect } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 
-// Middleware
+/*  ============================
+          Redux Middleware
+    ============================
+*/
 import thunk from "redux-thunk";
 
-// Reducers
+/*  ============================
+          Redux Reducers
+    ============================
+*/
 import reducers from "./reducers";
 
-// Component imports
+/*  ============================
+          Component Imports
+    ============================
+*/
 import App from "./components/App/App";
-import Api from "./components/Api/api";
+import Questions from "./components/Questions/Questions";
 import Home from "./components/home/home";
 import ErrorPage from "./components/404/error";
 
-// Service Worker React
+/*  ============================
+          Service Worker React
+    ============================
+*/
 import registerServiceWorker from "./registerServiceWorker";
 
-// CSS imports
+/*  ============================
+          Main CSS Import
+    ============================
+*/
 import "./index.css";
 
-// redux dev tools setup
+/*  ============================
+       Redux Dev Tools Setup
+    ============================
+*/
 const enhancers = compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 
-// Create store
+/*  ============================
+        Create Redux store
+    ============================
+*/
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(reducers, enhancers);
@@ -37,7 +58,7 @@ ReactDOM.render(
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/questions" component={Api} />
+        <Route path="/questions" component={Questions} />
         <Route path="/error" component={ErrorPage} />
         <Redirect to="/error" />
       </Switch>

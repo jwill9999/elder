@@ -12,13 +12,11 @@ import FormFields from "../FormFields/FormFields";
 import Results from "../Results/Results";
 import ErrorMessage from "../error/Error";
 
-import "./api.css";
+import "./questions.css";
 
-class Api extends Component {
+class Questions extends Component {
   componentDidMount() {
-    if (this.props.data.length <= 0) {
-      this.props.fetchData();
-    }
+    this.props.fetchData();
   }
   // error message alert from server
   messageAlert() {
@@ -87,14 +85,14 @@ class Api extends Component {
   }
 }
 
-Api.defaultProps = {
+Questions.defaultProps = {
   data: [],
   sendData: {},
   results: {},
   errors: {}
 };
 
-Api.propTypes = {
+Questions.propTypes = {
   sendData: PropTypes.func,
   fetchData: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
@@ -135,5 +133,5 @@ function mapDispatchToProps(dispatch) {
 export default connect(mapStateToProps, mapDispatchToProps)(
   reduxForm({
     form: "questionForm"
-  })(Api)
+  })(Questions)
 );
