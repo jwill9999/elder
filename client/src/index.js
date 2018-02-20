@@ -1,8 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Switch, Route, BrowserRouter, Redirect } from "react-router-dom";
-import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
+import { Provider } from "react-redux";
+import createHistory from "history/createBrowserHistory";
+import { Route } from "react-router";
+import { Redirect, Switch } from "react-router-dom";
+import { ConnectedRouter, routerMiddleware, push } from "react-router-redux";
 
 /*  ============================
           Redux Middleware
@@ -23,19 +26,23 @@ import reducers from "./reducers";
 import App from "./components/App/App";
 import Questions from "./containers/Questions/Questions";
 import Home from "./components/home/home";
-import ErrorPage from "./components/404/error";
+import ErrorPage from "./containers/404/error";
 
-/*  ============================
-          Service Worker React
-    ============================
+/*  =======================================
+      Create a history of your choosing 
+      (we're using a browser history in 
+      this case)
+    =======================================
 */
-import registerServiceWorker from "./registerServiceWorker";
+const history = createHistory();
 
-/*  ============================
-          Main CSS Import
-    ============================
+/*  =======================================
+      Build the middleware for intercepting 
+      and dispatching navigation actions
+    =======================================
 */
-import "./index.css";
+
+const middleware = routerMiddleware(history);
 
 /*  ============================
        Redux Dev Tools Setup
@@ -50,20 +57,22 @@ const enhancers = compose(
     ============================
 */
 
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+const createStoreWithMiddleware = applyMiddleware(thunk, middleware)(
+  createStore
+);
 const store = createStoreWithMiddleware(reducers, enhancers);
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    {/* ConnectedRouter will use the store from Provider automatically */}
+    <ConnectedRouter history={history}>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/questions" component={Questions} />
-        <Route path="/error" component={ErrorPage} />
-        <Redirect to="/error" />
+        <Route exact path="/questions" component={Questions} />
+        <Route exact path="/error" component={ErrorPage} />
+        <Route path="/*" component={ErrorPage} />
       </Switch>
-    </BrowserRouter>
+    </ConnectedRouter>
   </Provider>,
   document.getElementById("root")
 );
-registerServiceWorker();
