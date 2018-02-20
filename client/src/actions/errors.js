@@ -8,6 +8,7 @@ import { ERROR_INFO, CLEAR_ERROR } from "./types";
 */
 
 export default function authError(error) {
+  console.log("error variable ", error);
   return dispatch => {
     dispatch({
       type: ERROR_INFO,
@@ -18,7 +19,7 @@ export default function authError(error) {
     setTimeout(() => {
       dispatch({
         type: CLEAR_ERROR,
-        payload: { error: "" }
+        payload: []
       });
     }, 6000);
   };

@@ -29,7 +29,7 @@ export default function sendData(data) {
       })
       .catch(() => {
         setTimeout(() => {
-          dispatch(error({ error: "Something failed getting your results!" }));
+          dispatch(error("Something failed getting your results!"));
         }, 3000);
       });
   };

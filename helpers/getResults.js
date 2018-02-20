@@ -1,6 +1,20 @@
 var { parseData, diffArray } = require("./postData");
 var model = require("../model/questions");
 
+/*  ===============================================
+      Recieves POST Answers from Client
+      Calls helper functions in postData.js.
+      results returned to Client
+      @returned 
+      data: {
+              incorrectIndex: [],
+              totalQuestions: number,
+              totalIncorrect: number
+            }
+
+      ================================================
+  */
+
 module.exports = {
   getResults: (req, res) => {
     /*   =====================================

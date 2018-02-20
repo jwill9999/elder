@@ -1,26 +1,21 @@
-import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-export default class Results extends Component {
-  alertResults() {
-    const { totalQuestions, totalIncorrect } = this.props;
+import React from "react";
 
-    if (totalIncorrect !== undefined) {
-      return (
-        <div className="alert alert-info" role="alert">
-          <strong>
-            You got {totalQuestions - totalIncorrect} questions right out of a
-            total of {totalQuestions}
-          </strong>
-        </div>
-      );
-    }
+const Results = props => {
+  const { totalQuestions, totalIncorrect } = props;
+  if (totalQuestions === undefined) {
+    return null;
   }
-
-  render() {
-    return <div>{this.alertResults()}</div>;
-  }
-}
+  return (
+    <div className="alert alert-info" role="alert">
+      <strong>
+        You got {totalQuestions - totalIncorrect} questions right out of a total
+        of {totalQuestions}
+      </strong>
+    </div>
+  );
+};
 
 Results.defaultProps = {
   totalIncorrect: undefined,
@@ -31,3 +26,5 @@ Results.propTypes = {
   totalIncorrect: PropTypes.number,
   totalQuestions: PropTypes.number
 };
+
+export default Results;

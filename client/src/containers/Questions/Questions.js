@@ -7,21 +7,16 @@ import { reduxForm } from "redux-form";
 
 import fetchData from "../../actions/index";
 import sendData from "../../actions/sendData";
-import Header from "../Header/header";
-import FormFields from "../FormFields/FormFields";
-import Results from "../Results/Results";
-import ErrorMessage from "../error/Error";
+import Header from "../../components/Header/header";
+import FormFields from "../../components/FormFields/FormFields";
+import Results from "../../components/Results/Results";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 import "./questions.css";
 
 class Questions extends Component {
   componentDidMount() {
     this.props.fetchData();
-  }
-  // error message alert from server
-  messageAlert() {
-    const { error } = this.props.errors;
-    if (error) return <ErrorMessage errorMessage={this.props.errors} />;
   }
 
   handleFormSubmit(e) {
@@ -37,17 +32,11 @@ class Questions extends Component {
 
     const { data } = this.props;
 
-    if (data.length === 0) {
-      return (
-        <div className="container ">
-          <div className="mx-auto spinner">
-            <RiseLoader color="#123abc" />
-          </div>
-        </div>
-      );
-    }
+    // if (data.length === 0 && this.props.errors.length === 0) {
 
-    if (data.length !== 0) {
+    // }
+
+    if (data.length !== 0 || this.props.errors.length !== 0) {
       return (
         <div>
           <Header />
@@ -55,7 +44,7 @@ class Questions extends Component {
             <div className="row">
               <div className="col-md-10 text-center mx-auto mt-5 mb-5">
                 <h1 id="headerText">Elder Questions and Answers</h1>
-                {this.messageAlert()}
+
                 <form
                   id="questionForm"
                   onSubmit={this.props.handleSubmit(
@@ -64,7 +53,7 @@ class Questions extends Component {
                 >
                   <FormFields data={data} incorrectIndex={incorrectIndex} />
 
-                  {this.messageAlert()}
+                  <ErrorMessage errors={this.props.errors} />
                   <Results
                     totalIncorrect={totalIncorrect}
                     totalQuestions={totalQuestions}
@@ -81,7 +70,14 @@ class Questions extends Component {
           </div>
         </div>
       );
-    }
+    } // end
+    return (
+      <div className="container ">
+        <div className="mx-auto spinner">
+          <RiseLoader color="#123abc" />
+        </div>
+      </div>
+    );
   }
 }
 
@@ -89,7 +85,7 @@ Questions.defaultProps = {
   data: [],
   sendData: {},
   results: {},
-  errors: {}
+  errors: []
 };
 
 Questions.propTypes = {
@@ -109,7 +105,7 @@ Questions.propTypes = {
       incorrectIndex: PropTypes.array
     })
   ),
-  errors: PropTypes.objectOf(PropTypes.string)
+  errors: PropTypes.arrayOf(PropTypes.string)
 };
 
 function mapStateToProps(state) {

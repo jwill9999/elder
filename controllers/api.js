@@ -7,6 +7,7 @@ const { getResults } = require("../helpers/getResults");
 /*  ==========================================
     GET Request from candidates for questions
     @route /api/data
+    @Renders JSON from Questions Model
     ==========================================
 */
 

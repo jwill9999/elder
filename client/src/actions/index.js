@@ -1,5 +1,6 @@
 import axios from "axios";
-import { FETCH_DATA, ERROR_INFO } from "./types";
+import error from "./errors";
+import { FETCH_DATA } from "./types";
 
 /*  =================================================================              
               GETS the Questions from the server.
@@ -29,10 +30,7 @@ export default function fetchData() {
       })
       .catch(() => {
         setTimeout(() => {
-          dispatch({
-            type: ERROR_INFO,
-            payload: `Unable to fetch data from the server`
-          });
+          dispatch(error("Something Failed getting your Questions !"));
         }, 3000);
       });
   };

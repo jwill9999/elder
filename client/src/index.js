@@ -21,7 +21,7 @@ import reducers from "./reducers";
     ============================
 */
 import App from "./components/App/App";
-import Questions from "./components/Questions/Questions";
+import Questions from "./containers/Questions/Questions";
 import Home from "./components/home/home";
 import ErrorPage from "./components/404/error";
 

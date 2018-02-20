@@ -3,7 +3,8 @@ var router = express.Router();
 
 /*    ===========================================
             GET Request for Index.html 
-            @route /           
+            @route '/' 
+            @Renders Index.html          
       ===========================================
 */
 

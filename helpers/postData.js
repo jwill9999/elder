@@ -1,5 +1,12 @@
 var Promise = global.Promise;
 
+/*    ===============================================
+       Helper functions for file getResults.js
+       @parseData parsed req.body object
+       @diffArray returns incorrect answer index []
+      ================================================
+  */
+
 module.exports = {
   /*  ===============================================
       Parse incoming Answers from req body and return
