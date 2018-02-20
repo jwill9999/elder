@@ -19,7 +19,7 @@ import { SEND_DATA } from "./types";
 export default function sendData(data) {
   return dispatch => {
     axios
-      .post("/api/resultss", { data })
+      .post("/api/results", { data })
       .then(res => {
         const payload = res.data.data;
         setTimeout(() => {
