@@ -4,7 +4,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import createHistory from "history/createBrowserHistory";
 import { Route } from "react-router";
-import { Redirect, Switch } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import { ConnectedRouter, routerMiddleware, push } from "react-router-redux";
 
 /*  ============================
