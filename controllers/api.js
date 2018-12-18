@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const questionSchema = require('../model/Schema/QuestionSchema');
 const model = require("../model/questions");
 const api = require("../model/questions");
 const { getResults } = require("../helpers/getResults");
@@ -12,15 +13,20 @@ const { getResults } = require("../helpers/getResults");
 */
 
 router.get("/data", (req, res) => {
-  res.json({
-    api
+  
+  questionSchema.find( (err, data) => {
+
+    res.send(data);
   });
+  
 });
 
 /*    ===========================================
       POST Request data from candidates answers
       ===========================================
   */
+
+  
 
 router.post("/results", getResults);
 

@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import createHistory from "history/createBrowserHistory";
 import { Route } from "react-router";
 import { Switch } from "react-router-dom";
-import { ConnectedRouter, routerMiddleware, push } from "react-router-redux";
+import { ConnectedRouter, routerMiddleware } from "react-router-redux";
 
 /*  ============================
           Redux Middleware
@@ -23,7 +23,7 @@ import reducers from "./reducers";
           Component Imports
     ============================
 */
-import App from "./components/App/App";
+
 import Questions from "./containers/Questions/Questions";
 import Home from "./components/home/home";
 import ErrorPage from "./containers/404/error";

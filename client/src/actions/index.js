@@ -20,8 +20,8 @@ export default function fetchData() {
     axios
       .get("/api/data")
       .then(res => {
-        const payload = res.data.api;
-        console.log("payload is ", payload);
+        const payload = res.data;
+        console.log("payload is .... ", res.data);
         setTimeout(() => {
           dispatch({
             type: FETCH_DATA,

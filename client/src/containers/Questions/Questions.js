@@ -32,10 +32,6 @@ class Questions extends Component {
 
     const { data } = this.props;
 
-    // if (data.length === 0 && this.props.errors.length === 0) {
-
-    // }
-
     if (data.length !== 0 || this.props.errors.length !== 0) {
       return (
         <div>
@@ -126,7 +122,10 @@ function mapDispatchToProps(dispatch) {
   );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(
   reduxForm({
     form: "questionForm"
   })(Questions)

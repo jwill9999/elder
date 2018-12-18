@@ -1,4 +1,8 @@
 var express = require("express");
+const graphqlHTTP = require('express-graphql');
+const MyGraphQLSchema = './model/Schema/GraphQLSchema';
+const mongoose = require("mongoose");
+const seedDatabase = require("./model/seed");
 var path = require("path");
 var favicon = require("serve-favicon");
 var logger = require("morgan");
@@ -10,6 +14,14 @@ var index = require("./controllers/index");
 var api = require("./controllers/api");
 
 var app = express();
+
+//connect Mongoose to database.
+mongoose.connect('mongodb://jason:a1a1a1@ds137634.mlab.com:37634/elder', { useNewUrlParser: true })
+mongoose.connection
+  .on('error', console.error.bind(console, 'connection error:'))
+  .once('open', () => {
+    console.log('Database connected successfully')
+  })
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -26,6 +38,15 @@ app.use(express.static(path.join(__dirname, "public/build")));
 app.use("/", index);
 
 app.use("/api", api);
+
+/*************** TODO: add graphql route ************************/
+
+app.use('/graphql', graphqlHTTP({
+  schema: MyGraphQLSchema,
+  graphiql: true
+}));
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

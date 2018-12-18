@@ -1,6 +1,7 @@
 var { parseData, diffArray } = require("./postData");
-var model = require("../model/questions");
-
+//var model = require("../model/questions");
+var questionSchema = require('../model/Schema/QuestionSchema');
+// TODO: sort out parsing of answers
 /*  ===============================================
       Recieves POST Answers from Client
       Calls helper functions in postData.js.
@@ -14,7 +15,6 @@ var model = require("../model/questions");
 
       ================================================
   */
-
 module.exports = {
   getResults: (req, res) => {
     /*   =====================================
@@ -22,9 +22,9 @@ module.exports = {
          =====================================
     */
 
-    let parsedData = parseData(req);
+    let clientData = parseData(req);
 
-    parsedData
+    clientData
       .then(data => {
         parseAnswers(data);
       })
@@ -44,9 +44,20 @@ module.exports = {
         ================================================================
     */
 
-      const arr1 = model.map(answers => {
-        return answers.answer;
+      const arr1 = questionSchema.find((err, databaseData) => {
+        if(err){
+          console.log(err.message);
+        } else {
+          databaseData.map(answers => {
+            console.log('*******',answers.answer)
+             return answers.answer;
+           });
+
+        }
+
+
       });
+      
 
       /*  ==========================
         extract Object values only

@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 export default class FormFields extends Component {
   alertResults2(index) {
     const { incorrectIndex } = this.props;
-
     if (incorrectIndex !== undefined) {
       return incorrectIndex.map(i => {
         if (index === i) {
@@ -19,9 +18,13 @@ export default class FormFields extends Component {
             </div>
           );
         }
+        return <div />;
       });
     }
+
+    return <div />;
   }
+
   render() {
     const { data } = this.props;
     return data.map((info, index) => (

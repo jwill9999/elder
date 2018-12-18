@@ -1,36 +1,40 @@
 {
-  "extends": ["airbnb", "prettier", "prettier/react"],
-  "plugins": ["prettier"],
-  "parser": "babel-eslint",
+  "env": {
+    "mocha": true
+  },
+  "extends": [
+    "airbnb-base",
+    "prettier",
+    "prettier/react"
+  ],
+  "plugins": [
+    "import",
+    "react",
+    "jsx-a11y",
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": "error",
+    "linebreak-style": ["error", "windows"],
+    "no-console": 0,
+    "no-undef": 0,
+    "radix": 0,
+    "no-param-reassign": 0,
+    "no-unused-vars": 0,
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error"
+
+  },
+  "overrides": [{
+    "files": ["*.spec.js", "*.test.js"],
+
+    "rules": {
+      "no-unused-expressions": 0
+    }
+  }],
   "parserOptions": {
-    "ecmaVersion": 2016,
-    "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
     }
-  },
-  "env": {
-    "es6": true,
-    "browser": true,
-    "node": true,
-    "jest": true
-  },
-  "rules": {
-    "react/jsx-filename-extension": [
-      1,
-      {
-        "extensions": [".js", ".jsx"],
-        "no-restricted-syntax": [
-          "error",
-          "ForInStatement",
-          "LabeledStatement",
-          "WithStatement"
-        ]
-      }
-    ],
-    "linebreak-style": 0,
-    "prettier/prettier": "error",
-    "no-dupe-keys": 0,
-    "no-console": 0
   }
 }

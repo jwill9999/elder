@@ -31,12 +31,15 @@ const Header = () => (
     <Link className="nav-item nav-link active" to="/">
       Home
     </Link>
-    <Link className="nav-item nav-link" to="/error">
+    <Link className="nav-item nav-link"   
+    
+    to="/error">
       Error Example
     </Link>
     <a
       className="nav-item nav-link"
       target="_blank"
+      rel="noopener noreferrer"
       href="https://github.com/jwill9999/"
     >
       GitHub
@@ -44,6 +47,7 @@ const Header = () => (
     <a
       className="nav-item nav-link disabled"
       target="_blank"
+      rel="noopener noreferrer"
       href="http://letuscode.co.uk"
     >
       LetusCode
