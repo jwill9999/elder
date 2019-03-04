@@ -13,7 +13,7 @@
 </div>
 
 <div align="center">
-<img src="./public/images/eldererror.png" />
+<img src="./public/images/elderError.png" />
 </div>
 
 
