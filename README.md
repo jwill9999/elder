@@ -4,11 +4,19 @@
 
 ## Project View
 
-![](./public/images/elderhome.png)
+<div align="center">
+<img src="./public/images/elderhome.png" />
+</div>
 
-![](./public/images/elder.png)
+<div align="center">
+<img src="./public/images/elder.png" />
+</div>
 
-![](./public/images/eldererror.png)
+<div align="center">
+<img src="./public/images/eldererror.png" />
+</div>
+
+
 
 ```
 git clone https://github.com/jwill9999/elder.git
